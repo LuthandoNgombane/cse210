@@ -1,10 +1,11 @@
+
 using System;
+using System.Collections.Generic;
 
 class Program
 {
-    static void Main(string[] args)
-    {   
-
+    static void Main()
+    {
         //LN : Declare variables to store the numbers, sum, count, max, min, smallest positive, and average.
         int number = 0;
         int sum = 0;
@@ -16,25 +17,20 @@ class Program
         bool firstPositive = true;
         bool firstNumber = true;
         string input = "";
-        string[] numbers = new string[0];
+        List<string> numbers = new List<string>();
 
         //LN : Ask the user for a series of numbers, and append each one to a list. Stop when they enter 0.
         Console.WriteLine("Enter a list of numbers, type 0 when finished.");
         do
         {
             Console.Write("Enter number: ");
-
             input = Console.ReadLine();
             number = Convert.ToInt32(input);
 
             if (number != 0)
             {
-
-                //LN : Use Resize to add the new number to the array
-                Array.Resize(ref numbers, numbers.Length + 1);
-
-                //LN : Add the number to the array
-                numbers[numbers.Length - 1] = input;
+                //LN : Add the number to the list
+                numbers.Add(input);
                 sum += number;
                 count++;
 
@@ -52,7 +48,7 @@ class Program
                     max = number;
                 }
 
-                //LN : Check if the number is the smallest number entered
+                //LN : Check if the number is the smallest positive number entered
                 if (number > 0)
                 {
                     if (firstPositive)
@@ -71,10 +67,7 @@ class Program
                 {
                     min = number;
                 }
-
-
             }
-
         } while (number != 0);
 
         //LN : Compute the average of the numbers in the list.
@@ -90,6 +83,5 @@ class Program
         {
             Console.WriteLine($"The smallest positive number is: {smallestPositive}");
         }
-
     }
 }
